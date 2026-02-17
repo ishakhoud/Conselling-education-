@@ -1,0 +1,231 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<form method = "POST" action="{% url 'sports_result' %}">
+    {% csrf_token %}
+<div class="container py-5">
+  <div class="card shadow-lg p-4 rounded-4">
+
+    <div id="formCarousel" class="carousel slide" data-bs-interval="false">
+      
+      <div class="carousel-inner">
+
+        <!-- Step 1 -->
+        <div class="carousel-item active">
+          <h4 class="mb-3">Question 1</h4>
+          <p class="text-muted">I enjoy stamina activities.</p>
+
+          <div class="mt-3">
+            <div class="form-check">
+              <input class="form-check-input" type="radio" name="q1" value="5" id="q1a">
+              <label class="form-check-label" for="q1a">Very Passionate</label>
+            </div>
+
+            <div class="form-check">
+              <input class="form-check-input" type="radio" name="q1" value="4" id="q1b">
+              <label class="form-check-label" for="q1b">Just Like It</label>
+            </div>
+
+            <div class="form-check">
+              <input class="form-check-input" type="radio" name="q1" value="3" id="q1c">
+              <label class="form-check-label" for="q1c">Neutral</label>
+            </div>
+
+            <div class="form-check">
+              <input class="form-check-input" type="radio" name="q1" value="1" id="q1d">
+              <label class="form-check-label" for="q1d">Not At All</label>
+            </div>
+          </div>
+        </div>
+
+        <!-- Step 2 -->
+        <div class="carousel-item">
+          <h4 class="mb-3">Question 2</h4>
+          <p class="text-muted">I prefer power sports.</p>
+
+          <div class="mt-3">
+            <div class="form-check">
+              <input class="form-check-input" type="radio" name="q2" value="5" id="q2a">
+              <label class="form-check-label" for="q2a">Very Passionate</label>
+            </div>
+
+            <div class="form-check">
+              <input class="form-check-input" type="radio" name="q2" value="4" id="q2b">
+              <label class="form-check-label" for="q2b">Just Like It</label>
+            </div>
+
+            <div class="form-check">
+              <input class="form-check-input" type="radio" name="q2" value="3" id="q2c">
+              <label class="form-check-label" for="q2c">Neutral</label>
+            </div>
+
+            <div class="form-check">
+              <input class="form-check-input" type="radio" name="q2" value="1" id="q2d">
+              <label class="form-check-label" for="q2d">Not At All</label>
+            </div>
+          </div>
+        </div>
+        <!--step 3-->
+        <div class="carousel-item">
+          <h4 class="mb-3">Question 3</h4>
+          <p class="text-muted">I like fast games.</p>
+
+          <div class="mt-3">
+            <div class="form-check">
+              <input class="form-check-input" type="radio" name="q3" value="5" id="q3a">
+              <label class="form-check-label" for="q2a">Very Passionate</label>
+            </div>
+
+            <div class="form-check">
+              <input class="form-check-input" type="radio" name="q3" value="4" id="q3b">
+              <label class="form-check-label" for="q2b">Just Like It</label>
+            </div>
+
+            <div class="form-check">
+              <input class="form-check-input" type="radio" name="q3" value="3" id="q3c">
+              <label class="form-check-label" for="q2c">Neutral</label>
+            </div>
+
+            <div class="form-check">
+              <input class="form-check-input" type="radio" name="q3" value="1" id="q3d">
+              <label class="form-check-label" for="q2d">Not At All</label>
+            </div>
+          </div>
+        </div>
+
+        <!--step 4-->
+<div class="carousel-item">
+          <h4 class="mb-3">Question 4</h4>
+          <p class="text-muted"> I enjoy team sports.</p>
+
+          <div class="mt-3">
+            <div class="form-check">
+              <input class="form-check-input" type="radio" name="q4" value="5" id="q4a">
+              <label class="form-check-label" for="q2a">Very Passionate</label>
+            </div>
+
+            <div class="form-check">
+              <input class="form-check-input" type="radio" name="q4" value="4" id="q4b">
+              <label class="form-check-label" for="q2b">Just Like It</label>
+            </div>
+
+            <div class="form-check">
+              <input class="form-check-input" type="radio" name="q4" value="3" id="q4c">
+              <label class="form-check-label" for="q2c">Neutral</label>
+            </div>
+
+            <div class="form-check">
+              <input class="form-check-input" type="radio" name="q4" value="1" id="q4d">
+              <label class="form-check-label" for="q2d">Not At All</label>
+            </div>
+          </div>
+        </div>
+
+
+        <!-- Step 5 -->
+        <div class="carousel-item">
+          <h4 class="mb-3">Question 5</h4>
+          <p class="text-muted">I communicate well in games.</p>
+
+          <div class="mt-3">
+            <div class="form-check">
+              <input class="form-check-input" type="radio" name="q5" value="5" id="q5a">
+              <label class="form-check-label" for="q3a">Very Passionate</label>
+            </div>
+
+            <div class="form-check">
+              <input class="form-check-input" type="radio" name="q5" value="4" id="q5b">
+              <label class="form-check-label" for="q3b">Just Like It</label>
+            </div>
+
+            <div class="form-check">
+              <input class="form-check-input" type="radio" name="q5" value="3" id="q5c">
+              <label class="form-check-label" for="q3c">Neutral</label>
+            </div>
+
+            <div class="form-check">
+              <input class="form-check-input" type="radio" name="q5" value="1" id="q5d">
+              <label class="form-check-label" for="q3d">Not At All</label>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+
+    <!-- Navigation Buttons -->
+    <div class="d-flex justify-content-between mt-4">
+      <button type="button"
+              class="btn btn-outline-secondary"
+              data-bs-target="#formCarousel"
+              data-bs-slide="prev">
+        Previous
+      </button>
+
+      <button type="button"
+        id="nextBtn"
+        class="btn btn-primary"
+        data-bs-target="#formCarousel"
+        data-bs-slide="next">
+        Next
+      </button> 
+       <button type="submit"
+          id="submitBtn"
+          class="btn btn-success d-none"
+          disabled>
+    Submit
+  </button>
+    </div>
+    
+
+  </div>
+</div>
+</form>
+<script>
+document.addEventListener("DOMContentLoaded", function () {
+
+  const carousel = document.querySelector("#formCarousel");
+  const nextBtn = document.getElementById("nextBtn");
+  const submitBtn = document.getElementById("submitBtn");
+
+  const totalSlides = document.querySelectorAll(".carousel-item").length;
+
+  carousel.addEventListener("slid.bs.carousel", function (event) {
+
+      // If last slide
+      if (event.to === totalSlides - 1) {
+          nextBtn.classList.add("d-none");
+          submitBtn.classList.remove("d-none");
+      } else {
+          nextBtn.classList.remove("d-none");
+          submitBtn.classList.add("d-none");
+      }
+
+      checkAllAnswered();
+  });
+
+  function checkAllAnswered() {
+      const totalQuestions = 5;
+      let answered = 0;
+
+      for (let i = 1; i <= totalQuestions; i++) {
+          if (document.querySelector(`input[name="q${i}"]:checked`)) {
+              answered++;
+          }
+      }
+
+      if (answered === totalQuestions) {
+          submitBtn.disabled = false;
+      } else {
+          submitBtn.disabled = true;
+      }
+  }
+
+  document.querySelectorAll("input[type=radio]").forEach(input => {
+      input.addEventListener("change", checkAllAnswered);
+  });
+
+});
+</script>
+
+{% endblock %}

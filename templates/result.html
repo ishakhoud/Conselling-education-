@@ -1,0 +1,15 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<div class="container py-5 text-center">
+    <div class="card shadow-lg p-5 rounded-4">
+        <h2>Your Result</h2>
+        <h3 class="mt-3 text-primary">{{ result }}</h3>
+        <p class="mt-2">Your Total Score: <strong>{{ score }}</strong></p>
+
+        <a href="{% url 'sports' %}" class="btn btn-outline-primary mt-3">
+            Take Again
+        </a>
+    </div>
+</div>
+{% endblock %}
