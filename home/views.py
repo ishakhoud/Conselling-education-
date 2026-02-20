@@ -3,14 +3,10 @@ from django.contrib.auth.models import User
 from django.contrib.auth import authenticate, login as auth_login, logout as auth_logout
 from django.contrib.auth.decorators import login_required
 
-# Score thresholds
-SPORTS_PROFESSIONAL = 22
-SPORTS_COMPETITIVE = 18
-SPORTS_CASUAL = 12
 
-CAREER_HIGH = 20
-CAREER_MEDIUM = 15
-CAREER_LOW = 10
+# Create your views here.
+# # username = "ishak" password = "isha00000" 
+# #admin usermane = "isha" pass = "isha"
 
 def index(request):
     return render(request, "index.html")
@@ -51,10 +47,6 @@ def signup(request):
         email = request.POST.get('email')
         password = request.POST.get('password')
 
-        # Input validation
-        if not all([username, email, password]):
-            return render(request, "signup.html", {"error": "All fields are required"})
-
         if User.objects.filter(username=username).exists():
             return render(request, "signup.html", {"error": "Username already exists"})
 
@@ -65,70 +57,72 @@ def signup(request):
         )
 
         auth_login(request, user)
-        return redirect("/dashboard/")
-if request.method == "POST":
-        try:
-            q1 = int(request.POST.get("q1", 0))
-            q2 = int(request.POST.get("q2", 0))
-            q3 = int(request.POST.get("q3", 0))
-            q4 = int(request.POST.get("q4", 0))
-            q5 = int(request.POST.get("q5", 0))
-        except (ValueError, TypeError):
-            return render(request, "sports.html", {"error": "Invalid input"})
+        return redirect("/login/")
+
+    return render(request, "signup.html")
+@login_required
+def sports_result(request):
+     if request.method == "POST":
+        q1 = int(request.POST.get("q1", 0))
+        q2 = int(request.POST.get("q2", 0))
+        q3 = int(request.POST.get("q3", 0))
+        q4 = int(request.POST.get("q4", 0))
+        q5 = int(request.POST.get("q5", 0))
         
-        total_score = q1 + q2 + q3 + q4 + q5
-        
-        if total_score >= SPORTS_PROFESSIONAL:
+        total_score = q1 +q2 +q3 +q4 + q5
+        if total_score >= 22:
             result = "Professional Athlete Potential 🏆"
-        elif total_score >= SPORTS_COMPETITIVE:
+        elif total_score >= 18:
             result = "Competitive Sports Player ⚡"
-        elif total_score >= SPORTS_CASUAL:
+        elif total_score >= 12:
             result = "Casual Sports Enthusiast 🎯"
         else:
             result = "Sports may not be your primary interest 🤔"
             
-        return render(request, "result.html", {
-            "score": total_score,
-            "result": result
-        })
-    return render(request, t , "result.html" ,{
+        return render(request , "result.html" ,{
             "score": total_score,
             "result": result
         })
      return render(request ,"sports.html") 
  
- if request.method == "POST":
-        try:
-            q1 = int(request.POST.get("q1", 0))
-            q2 = int(request.POST.get("q2", 0))
-            q3 = int(request.POST.get("q3", 0))
-            q4 = int(request.POST.get("q4", 0))
-            q5 = int(request.POST.get("q5", 0))
-        except (ValueError, TypeError):
-            return render(request, "career.html", {"error": "Invalid input"})
-        
-        total_score = q1 + q2 + q3 + q4 + q5
-        
-        # Primary aptitude detection
-        if q1 >= 4 and q3 >= 4:
-            result = "Software Developer / Engineer 💻"
-        elif q2 >= 4:
-            result = "Doctor / Healthcare Professional 🏥"
-        elif q3 >= 4:
-            result = "Designer / Creative Artist 🎨"
-        elif q4 >= 4 and q5 >= 4:
-            result = "Manager / Entrepreneur 🚀"
-        elif total_score >= CAREER_HIGH:
-            result = "Multi-Talented Professional 🌟"
-        else:
-            result = "Explore multiple fields to discover your strength 🤔"
-            
-        return render(request, "result_career.html", {
-            "score": total_score,
-            "result": result
-        })
-    return render(request, "career.html"
-        else:
-            result = "Management / Public Relations"
+ 
+    
+@login_required        
 
-        return render(request, "result_career.html", {"result": result})
+
+
+
+def career_result(request):
+    if request.method == "POST":
+
+        
+        answers = {
+            "Engineering / IT": int(request.POST.get("q1", 0)),
+            "Medical / Healthcare": int(request.POST.get("q2", 0)),
+            "Creative Arts": int(request.POST.get("q3", 0)),
+            "Management": int(request.POST.get("q4", 0)),
+            "Media / Public Speaking": int(request.POST.get("q5", 0)),
+        }
+
+        recommended = max(answers, key=answers.get)
+        highest_score = answers[recommended]
+
+      
+        explanations = {
+            "Engineering / IT": "You have strong analytical and logical thinking skills.",
+            "Medical / Healthcare": "You show compassion and interest in helping others.",
+            "Creative Arts": "You have a creative and imaginative mindset.",
+            "Management": "You possess leadership and decision-making qualities.",
+            "Media / Public Speaking": "You are confident and expressive in communication.",
+        }
+
+        context = {
+            "recommended": recommended,
+            "score": highest_score,
+            "explanation": explanations[recommended],
+        }
+
+        return render(request, "result_career.html", context)
+
+    return redirect("career")
+
