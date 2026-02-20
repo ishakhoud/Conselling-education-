@@ -1,24 +1,59 @@
 {% extends 'base.html' %}
 
 {% block content %}
-<h1> Wellcome back, {{user.username}}👋</h1>
-<p>Ready to explore your career and sports pathways? Let's continue your journey.</p>
-<div class="card" style="width: 18rem;">
-  <div class="card-body">
-    <h5 class="card-title">Career guidance🎓</h5>
-    <h6 class="card-subtitle mb-2 text-body-secondary">Hey {{user.username}} ,Discover careers that match your interests and skills</h6>
-    <p class="card-text">Take our comprehensive career assessment to get personalized recommendations!</p>
-    <a href="{% url 'career' %}" class="card-link">Click here to continue</a>
+
+<div class="container py-5">
+
     
-  </div>
+    <div class="text-center mb-5">
+        <h1 class="fw-bold">Welcome back, {{ user.username }} 👋</h1>
+        <p class="text-muted fs-5">
+            Ready to explore your career and sports pathways?  
+            Let’s continue your journey.
+        </p>
+    </div>
+
+    
+    <div class="row justify-content-center g-4">
+
+       
+        <div class="col-md-5">
+            <div class="card shadow-lg border-0 h-100">
+                <div class="card-body text-center p-4">
+                    <h4 class="card-title mb-3">🎓 Career Guidance</h4>
+                    <p class="text-muted">
+                        Discover careers that match your interests and skills.
+                    </p>
+                    <p>
+                        Take our comprehensive career assessment to get personalized recommendations.
+                    </p>
+                    <a href="{% url 'career' %}" class="btn btn-primary w-100 mt-3">
+                        Start Career Assessment
+                    </a>
+                </div>
+            </div>
+        </div>
+
+       
+        <div class="col-md-5">
+            <div class="card shadow-lg border-0 h-100">
+                <div class="card-body text-center p-4">
+                    <h4 class="card-title mb-3">⚽ Sports Guidance</h4>
+                    <p class="text-muted">
+                        Find sports that align with your abilities and interests.
+                    </p>
+                    <p>
+                        Complete our sports assessment to discover opportunities that match your strengths.
+                    </p>
+                    <a href="{% url 'sports' %}" class="btn btn-success w-100 mt-3">
+                        Start Sports Assessment
+                    </a>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
 </div>
-<div class="card" style="width: 18rem;">
-  <div class="card-body">
-    <h5 class="card-title">Sports Guidance⚽</h5>
-    <h6 class="card-subtitle mb-2 text-body-secondary">Hey {{user.username}} ,find sports that align with your abilities and interests</h6>
-    <p class="card-text">Complete our sports assessment to discover opportunities that match your strengths!</p>
-    <a href="{% url 'sports' %}" class="card-link">Click here to continue</a>
-   
-  </div>
-</div>
+
 {% endblock %}
