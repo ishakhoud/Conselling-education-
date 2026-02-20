@@ -61,29 +61,41 @@ def signup(request):
 
     return render(request, "signup.html")
 @login_required
+
+
 def sports_result(request):
-     if request.method == "POST":
-        q1 = int(request.POST.get("q1", 0))
-        q2 = int(request.POST.get("q2", 0))
-        q3 = int(request.POST.get("q3", 0))
-        q4 = int(request.POST.get("q4", 0))
-        q5 = int(request.POST.get("q5", 0))
-        
-        total_score = q1 +q2 +q3 +q4 + q5
-        if total_score >= 22:
-            result = "Professional Athlete Potential 🏆"
-        elif total_score >= 18:
-            result = "Competitive Sports Player ⚡"
-        elif total_score >= 12:
-            result = "Casual Sports Enthusiast 🎯"
-        else:
-            result = "Sports may not be your primary interest 🤔"
-            
-        return render(request , "result.html" ,{
-            "score": total_score,
-            "result": result
-        })
-     return render(request ,"sports.html") 
+    if request.method == "POST":
+
+        scores = {
+            "Endurance Sports (Marathon, Cycling)": int(request.POST.get("q1", 0)),
+            "Power Sports (Weightlifting, Wrestling)": int(request.POST.get("q2", 0)),
+            "Speed Sports (Football, Basketball)": int(request.POST.get("q3", 0)),
+            "Team Sports (Cricket, Volleyball)": int(request.POST.get("q4", 0)),
+            "Strategic / Captain Roles": int(request.POST.get("q5", 0)),
+        }
+
+        recommended = max(scores, key=scores.get)
+        highest_score = scores[recommended]
+
+        explanations = {
+            "Endurance Sports (Marathon, Cycling)": "You have strong stamina and long-lasting energy.",
+            "Power Sports (Weightlifting, Wrestling)": "You prefer strength-based physical activities.",
+            "Speed Sports (Football, Basketball)": "You enjoy fast-paced and energetic games.",
+            "Team Sports (Cricket, Volleyball)": "You work well in team environments.",
+            "Strategic / Captain Roles": "You communicate well and can lead in games.",
+        }
+
+        context = {
+            "recommended": recommended,
+            "score": highest_score,
+            "explanation": explanations[recommended],
+        }
+
+        return render(request, "result.html", context)
+
+    return redirect("sports")
+
+
  
  
     
